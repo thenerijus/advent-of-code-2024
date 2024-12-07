@@ -47,7 +47,7 @@ public class Coordinates {
             case LEFT -> left();
             case RIGHT -> right();
         };
-        return isValid(coordinates, maxX, maxY) ? coordinates : null;
+        return coordinates.isValid(maxX, maxY) ? coordinates : null;
     }
 
     public List<Coordinates> getAllAdjacent() {
@@ -61,12 +61,12 @@ public class Coordinates {
     public List<Coordinates> getAllValidAdjacent(int maxX, int maxY) {
         return getAllAdjacent()
                 .stream()
-                .filter(c -> isValid(c, maxX, maxY))
+                .filter(c -> c.isValid(maxX, maxY))
                 .collect(Collectors.toList());
     }
 
-    public boolean isValid(Coordinates c, int maxX, int maxY) {
-        return c.x >= 0 && c.y >= 0 && c.x < maxX && c.y < maxY;
+    public boolean isValid(int maxX, int maxY) {
+        return this.x >= 0 && this.y >= 0 && this.x < maxX && this.y < maxY;
     }
 
     public List<Coordinates> getAllAdjacentAndDiagonal() {
@@ -90,7 +90,7 @@ public class Coordinates {
     public List<Coordinates> getAllValidAdjacentAndDiagonal(int maxX, int maxY) {
         return getAllAdjacentAndDiagonal()
                 .stream()
-                .filter(c -> isValid(c, maxX, maxY))
+                .filter(c -> c.isValid(maxX, maxY))
                 .collect(Collectors.toList());
     }
 
