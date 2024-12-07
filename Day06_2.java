@@ -30,7 +30,7 @@ public class Day06_2 extends Day06_1 {
             try {
                 updatedMap.simulateGuard();
             } catch (LoopDetectedException e) {
-                // end in a loop
+                // ends up in a loop
                 count += 1;
             }
         }
