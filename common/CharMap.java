@@ -19,7 +19,7 @@ public class CharMap {
         for (int y = 0; y < rows.size(); y++) {
             String[] letters = rows.get(y).split("");
             for (int x = 0; x < letters.length; x++) {
-                map[x][y] = letters[x];
+                map[y][x] = letters[x];
             }
         }
     }
@@ -34,8 +34,39 @@ public class CharMap {
         return all;
     }
 
+    public Coordinates find(String value) {
+        for (int y = 0; y < maxY; y++) {
+            for (int x = 0; x < maxX; x++) {
+                if (map[y][x].equals(value)) {
+                    return new Coordinates(x, y);
+                }
+            }
+        }
+        throw new IllegalStateException("No such value");
+    }
+
+    public String get(Coordinates c) {
+        return map[c.y][c.x];
+    }
+
     public String get(int x, int y) {
         return map[y][x];
+    }
+
+    public void set(Coordinates c, String newValue) {
+        map[c.y][c.x] = newValue;
+    }
+
+    public int count(String value) {
+        int count = 0;
+        for (int y = 0; y < maxY; y++) {
+            for (int x = 0; x < maxX; x++) {
+                if (map[y][x].equals(value)) {
+                    count += 1;
+                }
+            }
+        }
+        return count;
     }
 
     public int getMaxX() {
@@ -44,5 +75,14 @@ public class CharMap {
 
     public int getMaxY() {
         return maxY;
+    }
+
+    public void print() {
+        for (int y = 0; y < maxY; y++) {
+            for (int x = 0; x < maxX; x++) {
+                System.out.print(map[y][x]);
+            }
+            System.out.print("\n");
+        }
     }
 }
