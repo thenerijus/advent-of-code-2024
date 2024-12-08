@@ -9,7 +9,6 @@ import java.util.List;
  * @author Nerijus
  */
 public class Day05_1 {
-
     public static void main() {
         System.out.println("Sum of middle page number from correctly-ordered updates: " + new Day05_1().getResult());
     }

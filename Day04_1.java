@@ -11,7 +11,6 @@ import java.util.List;
  * @author Nerijus
  */
 public class Day04_1 {
-
     public static void main() {
         System.out.println("XMAS count: " + new Day04_1().getResult());
     }

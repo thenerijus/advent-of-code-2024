@@ -11,7 +11,6 @@ import java.util.*;
  * @author Nerijus
  */
 public class Day06_1 {
-
     public static void main() {
         System.out.println("Distinct positions will the guard visit: " + new Day06_1().getResult());
     }
