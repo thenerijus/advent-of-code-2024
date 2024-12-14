@@ -2,6 +2,7 @@ package common;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public class CharMap {
     private final int maxX;
@@ -45,6 +46,30 @@ public class CharMap {
         throw new IllegalStateException("No such value");
     }
 
+    public List<Coordinates> findAll(String value) {
+        List<Coordinates> found = new ArrayList<>();
+        for (int y = 0; y < maxY; y++) {
+            for (int x = 0; x < maxX; x++) {
+                if (map[y][x].equals(value)) {
+                    found.add(new Coordinates(x, y));
+                }
+            }
+        }
+        return found;
+    }
+
+    public List<Coordinates> findAll(Function<String, Boolean> matcher) {
+        List<Coordinates> found = new ArrayList<>();
+        for (int y = 0; y < maxY; y++) {
+            for (int x = 0; x < maxX; x++) {
+                if (matcher.apply(map[y][x])) {
+                    found.add(new Coordinates(x, y));
+                }
+            }
+        }
+        return found;
+    }
+
     public String get(Coordinates c) {
         return map[c.y][c.x];
     }
@@ -75,6 +100,10 @@ public class CharMap {
 
     public int getMaxY() {
         return maxY;
+    }
+
+    public boolean isValid(Coordinates c) {
+        return c.isValid(getMaxX(), getMaxY());
     }
 
     public void print() {
