@@ -1,3 +1,5 @@
+import common.CharMap;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -33,6 +35,10 @@ final class Inputs {
         return Arrays.stream(readString(fileName).split("\n"))
                 .map(Integer::valueOf)
                 .collect(toList());
+    }
+
+    static CharMap readCharMap(String fileName) {
+        return new CharMap(readStrings(fileName));
     }
 
     static int[][] readIntMap(String fileName) {
