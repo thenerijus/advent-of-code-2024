@@ -74,6 +74,13 @@ public class CharMap {
         return map[c.y][c.x];
     }
 
+    public String getSafe(Coordinates c) {
+        if (!isValid(c)) {
+            return "";
+        }
+        return map[c.y][c.x];
+    }
+
     public String get(int x, int y) {
         return map[y][x];
     }
