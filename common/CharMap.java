@@ -1,5 +1,7 @@
 package common;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -14,6 +16,22 @@ public class CharMap {
         this.maxY = rows.size();
         this.map = new String[maxY][maxX];
         readMap(rows);
+    }
+
+    private CharMap(int maxX, int maxY) {
+        this.maxX = maxX;
+        this.maxY = maxY;
+        this.map = new String[maxY][maxX];
+    }
+
+    public static CharMap empty(int maxX, int maxY) {
+        CharMap empty = new CharMap(maxX, maxY);
+        for (int y = 0; y < maxY; y++) {
+            for (int x = 0; x < maxX; x++) {
+                empty.map[y][x] = ".";
+            }
+        }
+        return empty;
     }
 
     public void readMap(List<String> rows) {
@@ -119,6 +137,15 @@ public class CharMap {
                 System.out.print(map[y][x]);
             }
             System.out.print("\n");
+        }
+    }
+
+    public void print(BufferedWriter bw) throws IOException {
+        for (int y = 0; y < maxY; y++) {
+            for (int x = 0; x < maxX; x++) {
+                bw.write(map[y][x]);
+            }
+            bw.write("\n");
         }
     }
 }
